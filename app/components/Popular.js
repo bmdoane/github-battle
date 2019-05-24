@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { fetchPopularRepos } from '../utils/api'
 
 // Functional component
-function LanguagesNav ({selected, onUpdateLanguage}) {
+function LanguagesNav({ selected, onUpdateLanguage }) {
   const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
 
   return (
@@ -31,17 +32,27 @@ export default class Popular extends React.Component {
     super(props)
 
     this.state = {
-      selectedLanguage: 'All'
+      selectedLanguage: 'All',
+      repos: {},
+      error: null
     }
 
     this.updateLanguage = this.updateLanguage.bind(this)
+    this.isLoading = this.isLoading.bind(this)
   }
-  updateLanguage (selectedLanguage) {
+  // Populate default 'All' on page load
+  componentDidMount() {
+    this.updateLanguage(this.state.selectedLanguage)
+  }
+  // Set the state of the language and fetch the repository
+  updateLanguage(selectedLanguage) {
+    // error and repos set to null for loading screen
     this.setState({
-      selectedLanguage
+      selectedLanguage,
+      error: null
     })
 
-    if(!this.state.repos[selectedLanguage]) {
+    if (!this.state.repos[selectedLanguage]) {
       fetchPopularRepos(selectedLanguage)
         .then((data) => {
           this.setState(({ repos }) => ({
@@ -66,7 +77,7 @@ export default class Popular extends React.Component {
     return !repos[selectedLanguage] && error === null
   }
   render() {
-    const { selectedLanguage } = this.state
+    const { selectedLanguage, repos, error } = this.state
 
     return (
       <React.Fragment>
@@ -74,6 +85,12 @@ export default class Popular extends React.Component {
           selected={selectedLanguage}
           onUpdateLanguage={this.updateLanguage}
         />
+
+        {this.isLoading() && <p>LOADING</p>}
+
+        {error && <p>{error}</p>}
+
+        {repos[selectedLanguage] && <pre>{JSON.stringify(repos[selectedLanguage], null, 2)}</pre>}
       </React.Fragment>
     )
   }
