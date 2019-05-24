@@ -51,8 +51,14 @@ li {
 
 .header-lg {
   font-size: 35px;
-  font-weight: 300px;
+  font-weight: 300;
   margin: 20px;
+}
+
+.header-sm {
+  font-size: 28px;
+  font-weight: 300;
+  margin: 10px;
 }
 
 .avatar {
@@ -68,7 +74,7 @@ li {
 }
 
 .link {
-  color: #E7000C;
+  color: rgb(187, 46, 31);
   text-decoration: none;
   font-weight: bold;
 }
@@ -110,4 +116,28 @@ li {
 
 .repo img {
   margin-bottom: 8px;
+}
+
+.instructions-container {
+  margin: 100px 0;
+}
+
+.container-sm {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.battle-instructions {
+  padding: 0;
+  font-size: 25px;
+}
+
+.battle-instructions li {
+  flex: 1;
+  width: 300px;
+}
+
+.battle-instructions svg {
+  padding: 40px;
+  border-radius: 3px;
 }
