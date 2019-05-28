@@ -66,7 +66,7 @@ class PlayerInput extends React.Component {
             onChange={this.handleChange}
           />
           <button
-            className='btn btn-dark'
+            className='btn dark-btn'
             type='submit'
             disabled={!this.state.username}
           >
@@ -89,7 +89,6 @@ export default class Battle extends React.Component {
       <React.Fragment>
         <Instructions />
 
-        <PlayerInput label="Label!" onSubmit={(value) => console.log('value!', value)} />
       </React.Fragment>
     )
   }
