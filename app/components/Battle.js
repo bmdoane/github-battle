@@ -166,7 +166,6 @@ export default class Battle extends React.Component {
                   onReset={() => this.handleReset('playerOne')}
                 />
             }
-
             {playerTwo === null
               ? <PlayerInput
                   label='Player Two'
