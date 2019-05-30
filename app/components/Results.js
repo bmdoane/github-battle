@@ -16,7 +16,7 @@ const styles = {
     width: '160px',
     bottom: '100%',
     left: '50%',
-    marginLeft: '-80%',
+    marginLeft: '-80px',
     borderRadius: '3px',
     backgroundColor: 'hsla(0, 0%, 20%, 0.9)',
     padding: '7px',
@@ -35,9 +35,26 @@ class ProfileList extends React.Component {
       hoveringLocation: false,
       hoveringCompany: false
     }
+
+    this.mouseOver = this.mouseOver.bind(this)
+    this.mouseOut = this.mouseOut.bind(this)
   }
+
+  mouseOver(id) {
+    this.setState({
+      [id]: true
+    })
+  }
+
+  mouseOut(id) {
+    this.setState({
+      [id]: false
+    })
+  }
+
   render() {
     const { profile } = this.props
+    const { hoveringCompany, hoveringLocation} = this.state
 
     return (
       <ul className='card-list'>
@@ -46,15 +63,23 @@ class ProfileList extends React.Component {
           {profile.name}
         </li>
         {profile.location && (
-          <li>
-            {hoveringLocation === true && <div style={styles.tooltip}>User's Location</div>}
+          <li 
+            onMouseOver={() => this.mouseOver('hoveringLocation')}
+            onMouseOut={() => this.mouseOut('hoveringLocation')}
+            style={styles.container}
+          >
+            {hoveringLocation === true && <div style={styles.tooltip}>User's location</div>}
             <FaCompass color='rgb(144, 115, 255)' size={22} />
             {profile.location}
           </li>
         )}
         {profile.company && (
-          <li>
-            {hoveringCompany === true && <div style={styles.tooltip}>User's Comapny</div>}
+          <li
+            onMouseOver={() => this.mouseOver('hoveringCompany')}
+            onMouseOut={() => this.mouseOut('hoveringCompany')}
+            style={styles.container}
+          >
+            {hoveringCompany === true && <div style={styles.tooltip}>User's company</div>}
             <FaBriefcase color='#795548' size={22} />
             {profile.company}
           </li>
