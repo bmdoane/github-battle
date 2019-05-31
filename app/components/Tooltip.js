@@ -39,4 +39,5 @@ Tooltip.propTypes = {
 }
 
 // Exporting the invocation of withHover(Higher Order Component) with Tooltip(Functional Component)
+// 2nd argument string can be used for naming prop, if not using default prop in HOC
 export default withHover(Tooltip)

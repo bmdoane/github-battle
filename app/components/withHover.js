@@ -1,7 +1,7 @@
 import React from 'react'
 
 // Function that returns another component
-export default function withHover (Component) {
+export default function withHover (Component, propName = 'hovering') {
   return class WithHover extends React.Component {
     constructor(props) {
       super(props)
@@ -27,12 +27,16 @@ export default function withHover (Component) {
       })
     }
 
-    // Passing props through WithHover to the Component with {...this.props}
+    // Passing props through WithHover to the Component being rendered with {...this.props}
     render () {
-      console.log('that', this.props)
+      const props = {
+        [propName]: this.state.hovering,
+        ...this.props
+      }
+
       return (
         <div onMouseOver={this.mouseOver} onMouseOut={this.mouseOut}>
-          <Component hovering={this.state.hovering} {...this.props} />
+          <Component {...props} />
         </div>
       )
     }
