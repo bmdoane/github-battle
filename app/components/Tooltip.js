@@ -23,7 +23,7 @@ const styles = {
   }
 }
 
-export defaults class Tooltip extends React.Component {
+export default class Tooltip extends React.Component {
   constructor(props) {
     super(props)
 
@@ -48,15 +48,21 @@ export defaults class Tooltip extends React.Component {
   }
 
   render() {
+    const { text, children } = this.props
+    const { hovering } = this.state
+
     return (
       <div
         onMouseOver={this.mouseOver}
         onMouseOut={this.mouseOut}
-        style={styles.container}
-      >
-        { hovering === true && <div style={styles.tooltip}></div>}
-
+        style={styles.container}>
+          {hovering === true && <div style={styles.tooltip}>{text}</div>}
+          {children}
       </div>
     )
   }
+}
+
+Tooltip.propTypes = {
+  text: PropTypes.string.isRequired
 }
