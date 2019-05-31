@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import withHover from './withHover'
+import Hover from './Hover'
 
 const styles = {
   container: {
@@ -24,20 +24,20 @@ const styles = {
   }
 }
 
-function Tooltip ({ text, children, hovering }) {
+export default function Tooltip ({ text, children }) {
+  // Render prop pattern - receiving the hovering prop as an argument, controlling the naming
   return (
-    <div style={styles.container}>
-      {hovering === true && <div style={styles.tooltip}>{text}</div>}
-      {children}
-    </div>
+    <Hover>
+      {(hovering) => (
+        <div style={styles.container}>
+          {hovering === true && <div style={styles.tooltip}>{text}</div>}
+          {children}
+        </div>
+      )}
+    </Hover>
   )
 }
 
 Tooltip.propTypes = {
-  text: PropTypes.string.isRequired,
-  hovering: PropTypes.bool.isRequired
+  text: PropTypes.string.isRequired
 }
-
-// Exporting the invocation of withHover(Higher Order Component) with Tooltip(Functional Component)
-// 2nd argument string can be used for naming prop, if not using default prop in HOC
-export default withHover(Tooltip)
