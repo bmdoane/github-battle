@@ -4,6 +4,7 @@ import './index.css'
 import Popular from './components/Popular'
 import Battle from './components/Battle'
 import { ThemeProvider } from './contexts/theme'
+import Nav from './components/Nav'
 
 class App extends React.Component {
   constructor(props) {
@@ -11,16 +12,21 @@ class App extends React.Component {
 
     this.state = {
       theme: 'light',
-      toggleTheme: (({ theme }) => ({
-        theme: theme === 'light' ? 'dark' : 'light'
-      }))
+      toggleTheme: () => {
+        this.setState(({ theme }) => ({
+          theme: theme === 'light' ? 'dark' : 'light'
+        }))
+      }
     }
   }
   render() {
     return (
       <ThemeProvider value={this.state}>
-        <div className='container'>
-          <Battle />
+        <div className={this.state.theme}>
+          <div className='container'>
+            <Nav />
+            <Battle />
+          </div>
         </div>
       </ThemeProvider>
     )
