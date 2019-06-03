@@ -46,9 +46,9 @@ li {
   color: inherit;
 }
 
-/* .nav li {
+.nav li {
   margin-right: 10px;
-} */
+}
 
 .grid {
   display: flex;
@@ -88,7 +88,7 @@ li {
 }
 
 .link {
-  color: rgb(187, 46, 31);
+  color: #E7000C;
   text-decoration: none;
   font-weight: bold;
 }
