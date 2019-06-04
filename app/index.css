@@ -46,6 +46,10 @@ li {
   color: inherit;
 }
 
+.nav li {
+  margin-right: 10px;
+}
+
 .grid {
   display: flex;
   flex-wrap: wrap;
@@ -53,6 +57,10 @@ li {
 
 .space-around {
   justify-content: space-around;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .header-lg {
@@ -80,7 +88,7 @@ li {
 }
 
 .link {
-  color: rgb(187, 46, 31);
+  color: #E7000C;
   text-decoration: none;
   font-weight: bold;
 }
